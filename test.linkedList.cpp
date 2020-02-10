@@ -2,8 +2,12 @@
 
 int main()
 {
-	LinkedList ll1, ll2, ll3;
-	ll1.display();
-	ll1.insertLast(ll2);
-	ll1.display();
+	LinkedList ll;
+	Node ll1("Sitter", "Gratter");
+	Node ll2("2Sitter", "2Gratter");
+	//ll.display();
+	ll.insertFirst(ll1);
+	ll.insertFirst(ll2);
+	ll.display();
+	return 0;
 }

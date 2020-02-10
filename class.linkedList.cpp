@@ -2,43 +2,40 @@
 
 LinkedList::LinkedList()
 {
-	//_node = new Node();
-	_next_node = NULL;
+
+	_head.set("LinkedList Q", "LinkedList A");
 };
 
-void LinkedList::display() //Displays all the nodes in the linked list
+LinkedList::LinkedList(string ques, string ans)
 {
-	
-	if(!_node.empty())
+	_head.set(ques, ans);
+};
+
+void LinkedList::display()
+{
+	Node *tmp = &_head;
+	cout << tmp->question() << " " << tmp->answer() << endl;
+	while(tmp->nextNode() != NULL)
 	{
-		_node.display();
+		tmp = tmp->nextNode();
+		cout << tmp->question() << " " << tmp->answer() << endl;
 	}
-	LinkedList *tmp = nextNode();
-	while(NULL != tmp)
+};
+
+void LinkedList::insertLast(Node n)
+{
+	Node *tmp = &_head;
+	while(tmp != NULL)
 	{
-		cout << "->";
-		tmp->display();
 		tmp = tmp->nextNode();
 	}
-	
+	tmp->setNext(n);
 };
 
-void LinkedList::insertLast(Node n) //Insert node at the end of List 
+void LinkedList::insertFirst(Node n)
 {
-	while(nextNode() != NULL)
-	{
-		Linkedlist *tmp = nextNode();
-		if(tmp->nextNode() == NULL){(tmp->nextNode)._node = n}
-	}
-	
-};
-
-
-void LinkedList::insertFirst(Node n) //Insert node at the beginning of List 
-{
-};
-
-LinkedList* LinkedList::nextNode()
-{
-	return _next_node;
+	Node *tmp = new Node(n);
+	tmp->_next = &_head;
+	_head = *tmp;
+	delete tmp;
 };

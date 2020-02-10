@@ -1,14 +1,17 @@
+#ifndef CLASS_LINKEDLIST
+#define CLASS_LINKEDLIST
+
 #include "class.node.hpp"
 
-class LinkedList {
+class LinkedList{
 	public:
-		LinkedList();   //Linked List Default Constructor
-		void display(); //Displays all the nodes in the linked list
-		void insertFirst(Node n); //Insert node at the beginning of List 
-		void insertLast(Node n); //Insert node at the end of List 
-		LinkedList* nextNode();
-
+		LinkedList();
+		LinkedList(string ques, string ans);
+		void display();
+		void insertLast(Node n);
+		void insertFirst(Node n);
 	private:
-		Node _node;
-		LinkedList* _next_node;
+		Node _head;
 };
+
+#endif
