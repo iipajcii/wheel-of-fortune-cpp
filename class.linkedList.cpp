@@ -1,22 +1,5 @@
-#ifndef LINKEDLIST_HPP
-#define LINKEDLIST_HPP
+#include "class.linkedList.hpp"
 #define UNIT_TEST_LINKEDLIST // Copy file to .cpp extension and compile to use unit test
-
-#include "struct.node.hpp"
-
-class LinkedList
-{
-	public:
-		LinkedList();
-		LinkedList(string q, string a);
-		void insertFirst(string ques, string ans);
-		void insertLast(string ques, string ans);
-		void circluar();//Transforms the Linked List into a Circular Linked List
-		void uncircular();//Transforms the Linked List into a Circular Linked List
-		void display();
-	private:
-		Node *_head = NULL;
-};
 
 LinkedList::LinkedList()
 {
@@ -71,6 +54,36 @@ void LinkedList::insertLast(string ques, string ans)
 	}
 };
 
+int LinkedList::count()
+{
+	Node *tmp = _head;
+	int count = 0;
+	while(NULL != tmp)
+	{
+		tmp = tmp->_next;
+		count++;
+	}
+	return count;
+}
+
+int LinkedList::find(string find)
+{
+	Node *tmp = _head;
+	int count = 0;
+	while(NULL != tmp)
+	{
+		count++;
+		if(tmp->_ques == find)
+		{
+			cout <<"\"" << find << "\""<<" found in entry: " << count << endl;
+			return count;
+		}
+		tmp = tmp->_next;
+	}
+	return -1;
+}
+
+
 void LinkedList::display()
 {
 	Node *tmp = _head;
@@ -111,22 +124,16 @@ void LinkedList::uncircular()
 	#ifdef UNIT_TEST_LINKEDLIST
 	int main()
 	{
-		LinkedList  ll("Question1","Answer1");
-		ll.insertFirst("Question2","Answer2");
-		ll.insertFirst("Question3","Answer3");
-		ll.insertFirst("Question4","Answer4");
-		ll.insertFirst("Question5","Answer5");
-		ll.insertLast ("Question6","Answer6");
-		ll.insertLast ("Question7","Answer7");
-		ll.insertLast ("Question8","Answer8");
-		ll.insertLast ("Question9","Answer9");
-		ll.insertLast ("Question10","Answer10");
+		LinkedList  ll("Q1","A1");
+		ll.insertFirst("Q2","A2");
+		ll.insertLast ("Q3","A3");
+		ll.insertLast ("Q4","A4");
 
+		cout << "Linked List Node Count: "  << ll.count() << endl << endl;
+		ll.find("Q3");
 		ll.circluar();
 		ll.uncircular();
 		ll.display();
 		return 0;
 	}
 	#endif
-
-#endif
