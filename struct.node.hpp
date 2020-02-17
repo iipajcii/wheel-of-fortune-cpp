@@ -1,6 +1,6 @@
 #ifndef NODE_HPP
 #define NODE_HPP
-//#define UNIT_TEST_NODE //Copy file to cpp to test
+//#define UNIT_TEST_NODE
 
 #include <iostream>
 #include <string>

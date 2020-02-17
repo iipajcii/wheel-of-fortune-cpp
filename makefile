@@ -1,5 +1,13 @@
-buildit: test.string.cpp
-	g++ test.string.cpp -o string;
+game: test.game.cpp
+	g++ test.game.cpp -o game;
 
-player: class.player.hpp class.player.cpp player.cpp
-	g++ class.player.cpp player.cpp -o player
+player: class.player.hpp class.player.cpp
+	g++ class.player.cpp -o player -D UNIT_TEST_PLAYER
+
+ll: class.linkedList.cpp class.linkedList.hpp
+	g++ class.linkedList.cpp class.linkedList.hpp -o ll -D UNIT_TEST_LINKEDLIST
+
+node: 
+	cp struct.node.hpp struct.node.cpp;
+	g++ struct.node.cpp -o node -D UNIT_TEST_NODE;
+	rm struct.node.cpp;

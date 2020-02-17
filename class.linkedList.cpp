@@ -1,5 +1,5 @@
 #include "class.linkedList.hpp"
-#define UNIT_TEST_LINKEDLIST // Copy file to .cpp extension and compile to use unit test
+//#define UNIT_TEST_LINKEDLIST
 
 LinkedList::LinkedList()
 {
@@ -29,6 +29,32 @@ void LinkedList::insertFirst(string ques, string ans)
 	{
 		n->_next= _head;
 		_head = n;
+	}
+};
+
+void LinkedList::insertMiddle(string ques, string ans)
+{
+	Node *n = new Node;
+	n->_ques = ques;
+	n->_ans = ans;
+	n->_next = NULL;
+
+	if(_head == NULL)
+	{
+		_head = n;
+	}
+	else
+	{
+		int entries = count() / 2;
+		Node* tmp = _head;
+		Node* prev = NULL;
+		for(int i = 0; i < entries; i++)
+		{
+			prev = tmp;
+			tmp = tmp->_next;
+		};
+		prev->_next = n;
+		n->_next = tmp;
 	}
 };
 
@@ -121,6 +147,44 @@ void LinkedList::uncircular()
 	tmp->_next = NULL;
 };
 
+void LinkedList::deleteNode()
+{
+	     if(_head == NULL)
+	{
+		cout << "Head is Null" << endl;
+		return;
+	}
+
+	cout << "Enter Question to delete" << endl;
+	string del;
+	cin >> del;
+
+	if(_head->_ques == del)
+	{
+		Node *tmp = _head;
+		_head = _head->_next;
+		delete tmp;
+	}
+	else
+	{
+		Node *tmp = _head;
+		Node *prev = tmp;
+		while(tmp->_next != NULL)
+		{
+			prev = tmp;
+			tmp = tmp->_next;
+			if(tmp->_ques == del)
+			{
+				prev->_next = tmp->_next;
+				delete tmp;
+				break;
+			}
+		}
+	}
+
+	
+}
+
 	#ifdef UNIT_TEST_LINKEDLIST
 	int main()
 	{
@@ -128,11 +192,16 @@ void LinkedList::uncircular()
 		ll.insertFirst("Q2","A2");
 		ll.insertLast ("Q3","A3");
 		ll.insertLast ("Q4","A4");
+		ll.insertLast ("Q5","A5");
+		
+		ll.insertMiddle("M","M");
 
 		cout << "Linked List Node Count: "  << ll.count() << endl << endl;
 		ll.find("Q3");
 		ll.circluar();
 		ll.uncircular();
+		ll.display();
+		ll.deleteNode();
 		ll.display();
 		return 0;
 	}
