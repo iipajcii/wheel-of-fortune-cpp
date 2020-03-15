@@ -6,9 +6,12 @@ class Player{
 		Player();
 		float balance ();
 		void deposit (float n);
+		int getTurns();
+		void decrementTurns();
 
 	private:
 		float money;
+		int turns;
 };
 
 #endif

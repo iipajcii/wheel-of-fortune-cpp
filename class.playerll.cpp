@@ -1,20 +1,40 @@
-#include "class.linkedList.hpp"
-//#define UNIT_TEST_LINKEDLIST
+#include "class.Playerll.hpp"
+//#define UNIT_TEST_Playerll
 
-LinkedList::LinkedList()
+/*
+class PlayerLL
+{
+	public:
+		PlayerLL();
+
+		void insertFirst(Player* p);
+		void deleteNode();
+		void insertMiddle(Player* p);
+		void insertLast(Player* p);
+		void circluar();//Transforms the Linked List into a Circular Linked List
+		void uncircular();//Transforms the Linked List into a Circular Linked List
+		int count();
+		int find(string find);
+		void display();
+
+	private:
+		Player *_head = NULL;
+};
+
+*/
+
+Playerll::Playerll()
 {
 	_head = NULL;
 };
 
-LinkedList::LinkedList(string q, string a)
+Playerll::Playerll(Player *p)
 {
-	_head = new Node;
-	_head->_ques = q;
-	_head->_ans = a;
+	_head = p;
 	_head->_next = NULL;
 };
 
-void LinkedList::insertFirst(string ques, string ans)
+void Playerll::insertFirst(string ques, string ans)
 {
 	Node *n = new Node;
 	n->_ques = ques;
@@ -32,7 +52,7 @@ void LinkedList::insertFirst(string ques, string ans)
 	}
 };
 
-void LinkedList::insertMiddle(string ques, string ans)
+void Playerll::insertMiddle(string ques, string ans)
 {
 	Node *n = new Node;
 	n->_ques = ques;
@@ -58,7 +78,7 @@ void LinkedList::insertMiddle(string ques, string ans)
 	}
 };
 
-void LinkedList::insertLast(string ques, string ans)
+void Playerll::insertLast(string ques, string ans)
 {
 	Node *n = new Node;
 	n->_ques = ques;
@@ -80,7 +100,7 @@ void LinkedList::insertLast(string ques, string ans)
 	}
 };
 
-int LinkedList::count()
+int Playerll::count()
 {
 	Node *tmp = _head;
 	int count = 0;
@@ -92,7 +112,7 @@ int LinkedList::count()
 	return count;
 }
 
-int LinkedList::find(string find)
+int Playerll::find(string find)
 {
 	Node *tmp = _head;
 	int count = 0;
@@ -110,16 +130,9 @@ int LinkedList::find(string find)
 }
 
 
-void LinkedList::display()
+void Playerll::display()
 {
 	Node *tmp = _head;
-	// /*1*/cout << _head->_ques << " :: " << _head->_ans << endl;
-	// /*2*/cout << _head->_next->_ques << " :: " << _head->_next->_ans << endl;
-	// /*3*/cout << _head->_next->_next->_ques << " :: " << _head->_next->_next->_ans << endl;
-	// /*4*/cout << _head->_next->_next->_next->_ques << " :: " << _head->_next->_next->_next->_ans << endl;
-	// /*5*/cout << _head->_next->_next->_next->_next->_ques << " :: " << _head->_next->_next->_next->_next->_ans << endl;
-	// /*6*/cout << _head->_next->_next->_next->_next->_next->_ques << " :: " << _head->_next->_next->_next->_next->_next->_ans << endl;
-
 	while(NULL != tmp)
 	{
 		cout << tmp->_ques << " :: " << tmp->_ans << endl;
@@ -127,7 +140,7 @@ void LinkedList::display()
 	}
 };
 
-void LinkedList::circluar()
+void Playerll::circluar()
 {
 	Node *tmp = _head;
 	while(NULL != tmp->_next)
@@ -137,7 +150,7 @@ void LinkedList::circluar()
 	tmp->_next = _head;
 };
 
-void LinkedList::uncircular()
+void Playerll::uncircular()
 {
 	Node *tmp = _head;
 	while(_head != tmp->_next)
@@ -147,7 +160,7 @@ void LinkedList::uncircular()
 	tmp->_next = NULL;
 };
 
-void LinkedList::deleteNode()
+void Playerll::deleteNode()
 {
 	     if(_head == NULL)
 	{
@@ -185,24 +198,9 @@ void LinkedList::deleteNode()
 	
 }
 
-	#ifdef UNIT_TEST_LINKEDLIST
+	#ifdef UNIT_TEST_Playerll
 	int main()
 	{
-		LinkedList  ll("Q1","A1");
-		ll.insertFirst("Q2","A2");
-		ll.insertLast ("Q3","A3");
-		ll.insertLast ("Q4","A4");
-		ll.insertLast ("Q5","A5");
-		
-		ll.insertMiddle("M","M");
-
-		cout << "Linked List Node Count: "  << ll.count() << endl << endl;
-		ll.find("Q3");
-		ll.circluar();
-		ll.uncircular();
-		ll.display();
-		ll.deleteNode();
-		ll.display();
 		return 0;
 	}
 	#endif
