@@ -16,7 +16,7 @@ playerNode: class.player.hpp class.player.cpp class.playerNode.hpp class.playerN
 	g++ class.playerNode.cpp class.player.cpp -o playerNode -D UNIT_TEST_PLAYER_NODE
 
 playerll: class.player.hpp class.player.cpp class.playerNode.hpp class.playerNode.cpp class.playerll.hpp class.playerll.cpp
-	g++ class.playerll.cpp -o playerll -D UNIT_TEST_PLAYERLL
+	g++ class.playerll.cpp class.playerNode.cpp class.player.cpp -o playerll -D UNIT_TEST_PLAYERLL
 
 wheel: class.linkedList.cpp class.linkedList.hpp
 	g++ class.wheel.cpp class.wheel.hpp -o wheel -D UNIT_TEST_WHEEL
