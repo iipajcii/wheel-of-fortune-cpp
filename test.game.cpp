@@ -6,9 +6,6 @@ int word(string ques, string ans);
 int main()
 {
 	string ques, ans, cache, temp;
-	//cout << "Enter a Word" << endl;
-	//cin >> ans;
-	//word("Question"",ans);
 	cout << "Enter a Question" << endl;
 	getline(cin, ques, '\n');
 
@@ -43,9 +40,9 @@ int word(string ques, string ans)
 					dash = false;
 					break;
 				}
-				//The above code does not handle spaces, this one does. 
 				else if(ans.at(i) == ' ')
 				{
+					//Above block of code does not handle spaces, this block 
 					cout << "  ";
 					dash = false;
 					space = true;

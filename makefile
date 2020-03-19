@@ -18,5 +18,8 @@ playerNode: class.player.hpp class.player.cpp class.playerNode.hpp class.playerN
 playerll: class.player.hpp class.player.cpp class.playerNode.hpp class.playerNode.cpp class.playerll.hpp class.playerll.cpp
 	g++ class.playerll.cpp class.playerNode.cpp class.player.cpp -o playerll -D UNIT_TEST_PLAYERLL
 
+puzzle: class.puzzle.hpp class.puzzle.cpp
+	g++ class.puzzle.hpp class.puzzle.cpp -o puzzle -D UNIT_TEST_PUZZLE
+
 wheel: class.linkedList.cpp class.linkedList.hpp
 	g++ class.wheel.cpp class.wheel.hpp -o wheel -D UNIT_TEST_WHEEL
