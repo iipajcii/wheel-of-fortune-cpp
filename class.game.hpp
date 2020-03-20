@@ -4,6 +4,7 @@
 #include "class.playerll.hpp"
 #include "class.wheel.hpp"
 #include "class.puzzle.hpp"
+#include "class.display.hpp"
 
 #include <iostream>
 using namespace std;
@@ -15,6 +16,7 @@ class Game
 		Game(PlayerLL p, Wheel w);
 		Game(PlayerLL p, Wheel w, Puzzle z);
 		int start();
+		Display display;
 	private:
 		PlayerLL players;
 		Wheel wheel;

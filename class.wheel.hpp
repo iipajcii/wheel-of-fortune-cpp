@@ -1,24 +1,25 @@
 #ifndef WHEEL_HPP
 #define WHEEL_HPP
-#include "struct.node.hpp"
+#include "class.cardNode.hpp"
+#include <cstddef> //In order to import the 'NULL' keyword that is usually added in <iostream>
 
 class Wheel
 {
 	public:
 		Wheel();
-		Wheel(string q, string a);
-		void insertFirst(string ques, string ans);
-		void deleteNode();
-		void insertMiddle(string ques, string ans);
-		void insertLast(string ques, string ans);
+		Wheel(CardNode* c);
+		void insertFirst(CardNode* c);
+		int deleteCard(Type t, float v);
+		void insertMiddle(CardNode* c);
+		void insertLast(CardNode* c);
 		void circluar();//Transforms the Linked List into a Circular Linked List
 		void uncircular();//Transforms the Linked List into a Circular Linked List
 		int count();
-		int find(string find);
+		int find(Type t, float v);
 		void display();
 		
 	private:
-		Node *_head = NULL;
+		CardNode* head = NULL;
 };
 
 #endif

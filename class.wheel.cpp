@@ -1,110 +1,95 @@
 #include "class.wheel.hpp"
-//#define UNIT_TEST_WHEEL
+#include <iostream>
+using namespace std;
 
 Wheel::Wheel()
 {
-	_head = NULL;
+	head = NULL;
 };
 
-Wheel::Wheel(string q, string a)
-{
-	_head = new Node;
-	_head->_ques = q;
-	_head->_ans = a;
-	_head->_next = NULL;
-};
 
-void Wheel::insertFirst(string ques, string ans)
+Wheel::Wheel(CardNode* c)
 {
-	Node *n = new Node;
-	n->_ques = ques;
-	n->_ans = ans;
-	n->_next = NULL;
+	head = c;
+	head->setNextCard(NULL);
+}
 
-	if(_head == NULL)
+void Wheel::insertFirst(CardNode* c)
+{
+	if(head == NULL)
 	{
-		_head = n;
+		head = c;
 	}
 	else
 	{
-		n->_next= _head;
-		_head = n;
+		c->setNextCard(head);
+		head = c;
 	}
-};
+}
 
-void Wheel::insertMiddle(string ques, string ans)
+void Wheel::insertMiddle(CardNode* n)
 {
-	Node *n = new Node;
-	n->_ques = ques;
-	n->_ans = ans;
-	n->_next = NULL;
-
-	if(_head == NULL)
+	if(head == NULL)
 	{
-		_head = n;
+		head = n;
 	}
 	else
 	{
 		int entries = count() / 2;
-		Node* tmp = _head;
-		Node* prev = NULL;
+		CardNode* tmp = head;
+		CardNode* prev = NULL;
 		for(int i = 0; i < entries; i++)
 		{
 			prev = tmp;
-			tmp = tmp->_next;
+			tmp = tmp->getNextCard();
 		};
-		prev->_next = n;
-		n->_next = tmp;
+		prev->setNextCard(n);
+		n->setNextCard(tmp);
 	}
-};
+}
 
-void Wheel::insertLast(string ques, string ans)
+void Wheel::insertLast(CardNode* n)
 {
-	Node *n = new Node;
-	n->_ques = ques;
-	n->_ans = ans;
-	n->_next = NULL;
-
-	if(_head == NULL)
+	if(head == NULL)
 	{
-		_head = n;
+		head = n;
 	}
 	else
 	{
-		Node* tmp = _head;
-		while(tmp->_next != NULL)
+		CardNode* tmp = head;
+		while(tmp->getNextCard() != NULL)
 		{
-			tmp = tmp->_next;
+			tmp = tmp->getNextCard();
 		};
-		tmp->_next = n;
+		tmp->setNextCard(n);
 	}
 };
 
 int Wheel::count()
 {
-	Node *tmp = _head;
+	CardNode *tmp = head;
 	int count = 0;
 	while(NULL != tmp)
 	{
-		tmp = tmp->_next;
+		tmp = tmp->getNextCard();
 		count++;
 	}
 	return count;
 }
 
-int Wheel::find(string find)
+int Wheel::find(Type t, float v)
 {
-	Node *tmp = _head;
+	CardNode *tmp = head;
 	int count = 0;
 	while(NULL != tmp)
 	{
 		count++;
-		if(tmp->_ques == find)
+		if(tmp->getCardType() == t && tmp->getCardValue() == v)
 		{
-			cout <<"\"" << find << "\""<<" found in entry: " << count << endl;
+			// cout <<"\"" << t <<"::" << f << "\""<<" found in entry: " << count << endl;
 			return count;
 		}
-		tmp = tmp->_next;
+		tmp = tmp->getNextCard();
 	}
 	return -1;
 }
@@ -112,90 +97,94 @@ int Wheel::find(string find)
 
 void Wheel::display()
 {
-	Node *tmp = _head;
+	CardNode *tmp = head;
 	while(NULL != tmp)
 	{
-		cout << tmp->_ques << " :: " << tmp->_ans << endl;
-		tmp = tmp->_next;
+		cout << tmp->getCardType() << " :: " << tmp->getCardValue() << endl;
+		tmp = tmp->getNextCard();
 	}
-};
+}
 
 void Wheel::circluar()
 {
-	Node *tmp = _head;
-	while(NULL != tmp->_next)
+	CardNode *tmp = head;
+	while(NULL != tmp->getNextCard())
 	{
-		tmp = tmp->_next;
+		tmp = tmp->getNextCard();
 	}
-	tmp->_next = _head;
+	tmp->setNextCard(head);
 };
 
 void Wheel::uncircular()
 {
-	Node *tmp = _head;
-	while(_head != tmp->_next)
+	CardNode *tmp = head;
+	while(head != tmp->getNextCard())
 	{
-		tmp = tmp->_next;
+		tmp = tmp->getNextCard();
 	}
-	tmp->_next = NULL;
+	tmp->setNextCard(NULL);
 };
 
-void Wheel::deleteNode()
+int Wheel::deleteCard(Type t, float v)
 {
-	     if(_head == NULL)
+	if(head == NULL)
 	{
-		cout << "Head is Null" << endl;
-		return;
+		return -1;
 	}
 
-	cout << "Enter Question to delete" << endl;
-	string del;
-	cin >> del;
-
-	if(_head->_ques == del)
+	if(head->getCardType() == t && head->getCardValue() == v)
 	{
-		Node *tmp = _head;
-		_head = _head->_next;
+		CardNode *tmp = head;
+		head = head->getNextCard();
 		delete tmp;
+		return 0;
 	}
 	else
 	{
-		Node *tmp = _head;
-		Node *prev = tmp;
-		while(tmp->_next != NULL)
+		CardNode *tmp = head;
+		CardNode *prev = tmp;
+		while(tmp->getNextCard() != NULL)
 		{
 			prev = tmp;
-			tmp = tmp->_next;
-			if(tmp->_ques == del)
+			tmp = tmp->getNextCard();
+			if(tmp->getCardType() == t && tmp->getCardValue() == v)
 			{
-				prev->_next = tmp->_next;
+				prev->setNextCard(tmp->getNextCard());
 				delete tmp;
 				break;
 			}
 		}
+		return 0;
 	}
-
-	
 }
 
 	#ifdef UNIT_TEST_WHEEL
 	int main()
 	{
-		Wheel  ll("Q1","A1");
-		ll.insertFirst("Q2","A2");
-		ll.insertLast ("Q3","A3");
-		ll.insertLast ("Q4","A4");
-		ll.insertLast ("Q5","A5");
+		Card* c1 = new Card(MONEY,300);
+		CardNode* cN1 = new CardNode(c1);
 		
-		ll.insertMiddle("M","M");
+		Card* c2 = new Card(MONEY,500);
+		CardNode* cN2 = new CardNode(c2);
 
-		cout << "Linked List Node Count: "  << ll.count() << endl << endl;
-		ll.find("Q3");
-		ll.circluar();
-		ll.uncircular();
-		ll.display();
-		ll.deleteNode();
-		ll.display();
+		Card* c3 = new Card(MONEY,600);
+		CardNode* cN3 = new CardNode(c3);
+
+		Wheel wheel;
+		wheel.insertFirst(cN1);
+		wheel.insertLast(cN2);
+		wheel.insertFirst(cN3);
+		cout << "Wheel Card Count: "  << wheel.count() << endl;
+		wheel.circluar();
+		wheel.uncircular();
+		wheel.display();
+		cout << "Test find MONEY::700\n" << wheel.find(MONEY, 700) << endl;
+		cout << "Test find MONEY::600\n" << wheel.find(MONEY, 600) << endl;
+		cout << "Test find MONEY::300\n" << wheel.find(MONEY, 300) << endl;
+		cout << "Test find MONEY::500\n" << wheel.find(MONEY, 500) << endl;
+		cout << "Deleting MONEY::500\n" << endl;
+		wheel.deleteCard(MONEY, 500);
+		wheel.display();
 		return 0;
 	}
 	#endif
