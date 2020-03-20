@@ -1,15 +1,20 @@
-enum Type{BANKRUPT = -1, SKIP = 0, MONEY = 1};
+#ifndef CARD_HPP
+#define CARD_HPP
 
 class Card 
 {
+	enum Type{BANKRUPT = -1, SKIP = 0, MONEY = 1};
+
 	public:
-		Card();
-		void  setType(Type t);
+  		Card();
+		void  setType(Card::Type t);
 		void  setValue(float v);
-		Type  getType();
+		Card::Type  getType();
 		float getValue();
 
 	private:
-		enum Type type;
 		float value;
+		Card::Type type;
 };
+
+#endif

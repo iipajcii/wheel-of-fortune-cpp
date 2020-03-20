@@ -1,3 +1,6 @@
+#ifndef PUZZLE_HPP
+#define PUZZLE_HPP
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -29,3 +32,5 @@ class Puzzle
 		string answer;
 		string cache;
 };
+
+#endif

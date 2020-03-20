@@ -1,3 +1,6 @@
+#ifndef GAME_HPP
+#define GAME_HPP
+
 #include "class.playerll.hpp"
 #include "class.wheel.hpp"
 #include "class.puzzle.hpp"
@@ -16,3 +19,5 @@ class Game
 		Wheel wheel;
 		Puzzle puzzle;
 };
+
+#endif

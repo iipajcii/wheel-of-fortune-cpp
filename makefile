@@ -1,4 +1,4 @@
-card:
+card: class.card.hpp class.card.cpp
 	g++ class.card.cpp -o card -D UNIT_TEST_CARD;
 
 node: struct.node.hpp
@@ -24,5 +24,5 @@ test_game: test.game.cpp
 game: class.card.cpp class.card.hpp class.game.cpp class.game.hpp class.player.cpp class.player.hpp class.playerll.cpp class.playerll.hpp class.playerNode.cpp class.playerNode.hpp class.puzzle.cpp class.puzzle.hpp class.wheel.cpp class.wheel.hpp
 	g++ class.card.cpp class.game.cpp class.player.cpp class.playerll.cpp class.playerNode.cpp class.puzzle.cpp class.wheel.cpp -o game -D UNIT_TEST_GAME
 
-wheel: class.linkedList.cpp class.linkedList.hpp
+wheel: class.wheel.cpp class.wheel.hpp class.card.hpp class.card.cpp
 	g++ class.wheel.cpp class.wheel.hpp -o wheel -D UNIT_TEST_WHEEL
