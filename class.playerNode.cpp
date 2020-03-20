@@ -1,5 +1,5 @@
 #include "class.playerNode.hpp"
-#include <cstddef>
+#include <cstddef> //In order to import the 'NULL' keyword that is usually added in <iostream>
 
 PlayerNode::PlayerNode()
 {
