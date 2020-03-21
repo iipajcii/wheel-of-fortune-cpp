@@ -4,13 +4,13 @@ using namespace std;
 
 Wheel::Wheel()
 {
-	head = NULL;
+	current = head = NULL;
 };
 
 
 Wheel::Wheel(CardNode* c)
 {
-	head = c;
+	current = head = c;
 	head->setNextCard(NULL);
 }
 
@@ -26,6 +26,37 @@ void Wheel::insertFirst(CardNode* c)
 		head = c;
 	}
 }
+
+void Wheel::insertCardAtHead(Type t, float v)
+{
+	Card* card = new Card(t, v);
+	CardNode* c = new CardNode(card);
+	if(head == NULL)
+	{
+		head = c;
+	}
+	else
+	{
+		c->setNextCard(head);
+		head = c;
+	}
+}
+
+void Wheel::insertCardAtHead(Type t)
+{
+	Card* card = new Card(t, 0);
+	CardNode* c = new CardNode(card);
+	if(head == NULL)
+	{
+		head = c;
+	}
+	else
+	{
+		c->setNextCard(head);
+		head = c;
+	}
+}
+
 
 void Wheel::insertMiddle(CardNode* n)
 {
@@ -167,13 +198,13 @@ int Wheel::deleteCard(Type t, float v)
 		Card* c2 = new Card(MONEY,500);
 		CardNode* cN2 = new CardNode(c2);
 
-		Card* c3 = new Card(MONEY,600);
-		CardNode* cN3 = new CardNode(c3);
+		
+		
 
 		Wheel wheel;
 		wheel.insertFirst(cN1);
 		wheel.insertLast(cN2);
-		wheel.insertFirst(cN3);
+		wheel.insertCardAtHead(MONEY,600);
 		cout << "Wheel Card Count: "  << wheel.count() << endl;
 		wheel.circluar();
 		wheel.uncircular();

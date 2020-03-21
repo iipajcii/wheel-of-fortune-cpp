@@ -38,22 +38,38 @@ Game::Game(PlayerLL p, Wheel w, Puzzle z)
 
 int Game::start()
 {
+	//Displaying Game Banner;
 	display.banner(1);
-	Card* c1 = new Card(BANKRUPT);
-	Card* c2 = new Card(SKIP);
-	Card* c3 = new Card(MONEY, 505);
-	Card* c4 = new Card(MONEY, 202);
+	
+	//Inserting Cards into Wheel
+	wheel.insertCardAtHead(MONEY,900);
+	wheel.insertCardAtHead(MONEY,500);
+	wheel.insertCardAtHead(MONEY,650);
+	wheel.insertCardAtHead(MONEY,500);
+	wheel.insertCardAtHead(MONEY,800);
+	wheel.insertCardAtHead(SKIP);
+	wheel.insertCardAtHead(MONEY, 700);
+	wheel.insertCardAtHead(MONEY, 850);
+	wheel.insertCardAtHead(MONEY, 650);
+	wheel.insertCardAtHead(BANKRUPT);
+	wheel.insertCardAtHead(MONEY, 600);
+	wheel.insertCardAtHead(MONEY, 500);
+	wheel.insertCardAtHead(MONEY, 550);
+	wheel.insertCardAtHead(MONEY, 600);
+	wheel.insertCardAtHead(BANKRUPT);
+	wheel.insertCardAtHead(MONEY, 700);
+	wheel.insertCardAtHead(MONEY, 500);
+	wheel.insertCardAtHead(MONEY, 650);
+	wheel.insertCardAtHead(MONEY, 600);
+	wheel.insertCardAtHead(MONEY, 700);
+	wheel.insertCardAtHead(MONEY, 600);
+	wheel.insertCardAtHead(SKIP);
+	wheel.insertCardAtHead(MONEY, 2500);
+	wheel.insertCardAtHead(BANKRUPT);
+	wheel.circular();
 
-	CardNode* cN1 = new CardNode(c1);
-	CardNode* cN2 = new CardNode(c2);
-	CardNode* cN3 = new CardNode(c3);
-	CardNode* cN4 = new CardNode(c4);
 
-	wheel.insertFirst(cN1);
-	wheel.insertFirst(cN2);
-	wheel.insertFirst(cN3);
-	wheel.insertFirst(cN4);
-	wheel.display();
+	// wheel.display();
 	return 0;
 }
 

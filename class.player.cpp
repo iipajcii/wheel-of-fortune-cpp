@@ -4,6 +4,13 @@ Player::Player()
 {
      money = 0;
      turns = 3;
+     name = "";
+}
+Player::Player(string n, float m)
+{
+     money = m;
+     turns = 3;
+     name = n;
 }
 
 float Player::balance()
@@ -24,6 +31,16 @@ int Player::getTurns()
 void Player::decrementTurns()
 {
 	turns = turns - 1;
+}
+
+string Player::getName()
+{
+	return name;
+}
+
+void Player::setName(string n)
+{
+	name = n;
 }
 
 

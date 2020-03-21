@@ -10,17 +10,19 @@ class PlayerLL
 		PlayerLL();
 		PlayerLL(PlayerNode *p);
 		void insertFirst(PlayerNode* p);
-		// void deleteNode();
-		// void insertMiddle(PlayerNode* p);
-		// void insertLast(PlayerNode* p);
-		// void circluar();//Transforms the Linked List into a Circular Linked List
-		// void uncircular();//Transforms the Linked List into a Circular Linked List
-		// int count();
-		// int find(string find);
+		void insertPlayerAtHead(string n, float f);
+		int deletePlayer(string n);
+		void insertMiddle(PlayerNode* p);
+		void insertLast(PlayerNode* p);
+		void circluar();//Transforms the Linked List into a Circular Linked List
+		void uncircular();//Transforms the Linked List into a Circular Linked List
+		int count();
+		int find(string find);
 		void display();
 
 	private:
-		PlayerNode *_head = NULL;
+		PlayerNode *head = NULL;
+		PlayerNode *current;
 };
 
 #endif

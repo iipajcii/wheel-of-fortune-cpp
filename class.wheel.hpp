@@ -9,6 +9,8 @@ class Wheel
 		Wheel();
 		Wheel(CardNode* c);
 		void insertFirst(CardNode* c);
+		void insertCardAtHead(Type t, float v);
+		void insertCardAtHead(Type t);
 		int deleteCard(Type t, float v);
 		void insertMiddle(CardNode* c);
 		void insertLast(CardNode* c);
@@ -20,6 +22,8 @@ class Wheel
 		
 	private:
 		CardNode* head = NULL;
+		CardNode* current;
+
 };
 
 #endif
