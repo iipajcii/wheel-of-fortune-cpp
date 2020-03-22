@@ -1,5 +1,8 @@
 #include "class.wheel.hpp"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
 using namespace std;
 
 Wheel::Wheel()
@@ -13,6 +16,14 @@ Wheel::Wheel(CardNode* c)
 	current = head = c;
 	head->setNextCard(NULL);
 }
+
+int Wheel::spin()
+{
+	srand(time(0));
+	int count = 50 + (rand() % 51);
+	return count;
+}
+
 
 void Wheel::insertFirst(CardNode* c)
 {
@@ -136,7 +147,7 @@ void Wheel::display()
 	}
 }
 
-void Wheel::circluar()
+void Wheel::circular()
 {
 	CardNode *tmp = head;
 	while(NULL != tmp->getNextCard())

@@ -11,10 +11,11 @@ class PlayerLL
 		PlayerLL(PlayerNode *p);
 		void insertFirst(PlayerNode* p);
 		void insertPlayerAtHead(string n, float f);
+		void insertPlayerAtHead(string n);
 		int deletePlayer(string n);
 		void insertMiddle(PlayerNode* p);
 		void insertLast(PlayerNode* p);
-		void circluar();//Transforms the Linked List into a Circular Linked List
+		void circular();//Transforms the Linked List into a Circular Linked List
 		void uncircular();//Transforms the Linked List into a Circular Linked List
 		int count();
 		int find(string find);

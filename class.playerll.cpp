@@ -23,7 +23,7 @@ void PlayerLL::insertFirst(PlayerNode *p)
 	}
 }
 
-void PlayerLL::circluar()
+void PlayerLL::circular()
 {
 	PlayerNode *tmp = head;
 	while(NULL != tmp->getNextPlayer())
@@ -63,6 +63,12 @@ void PlayerLL::insertMiddle(PlayerNode* p)
 		p->setNextPlayer(tmp);
 	}
 }
+
+void PlayerLL::insertPlayerAtHead(string n)
+{
+	insertPlayerAtHead(n, 0);
+}
+
 
 void PlayerLL::insertPlayerAtHead(string n, float v)
 {
@@ -166,7 +172,7 @@ void PlayerLL::display()
 	PlayerNode *tmp = head;
 	while(NULL != tmp)
 	{
-		cout <<"Player"<< counter <<"->";
+		cout << tmp->getPlayer()->getName() << "->";
 		tmp = tmp->getNextPlayer();
 		counter++;
 	}

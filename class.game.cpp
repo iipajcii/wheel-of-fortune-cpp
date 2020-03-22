@@ -35,11 +35,18 @@ Game::Game(PlayerLL p, Wheel w, Puzzle z)
 	puzzle = z;
 }
 
+int Game::spin()
+{
+	return wheel.spin();
+}
 
 int Game::start()
 {
 	//Displaying Game Banner;
 	display.banner(1);
+	display.pause(1);
+	display.text("\n           Hit 'Enter' to Play\n");
+	display.wait();
 	
 	//Inserting Cards into Wheel
 	wheel.insertCardAtHead(MONEY,900);
@@ -67,9 +74,30 @@ int Game::start()
 	wheel.insertCardAtHead(MONEY, 2500);
 	wheel.insertCardAtHead(BANKRUPT);
 	wheel.circular();
-
-
 	// wheel.display();
+
+	players.insertPlayerAtHead("Patrick");
+	players.insertPlayerAtHead("Dymond");
+	players.insertPlayerAtHead("Michael");
+	players.insertPlayerAtHead("Brianna");
+	players.circular();
+	// players.display();
+
+	puzzle.setPuzzle("question","answer");
+	// cout << puzzle.display() << "  " << puzzle.getQuestion() << "  " << puzzle.getAnswer() << endl;
+	return 0;
+}
+
+int Game::round(int round)
+{
+	display.clear();
+	display.displayRound(round);
+	display.pause(3);
+	display.clear();
+	display.text(puzzle.getQuestion());
+	display.text(puzzle.display());
+	
+	puzzle.enterLetter();
 	return 0;
 }
 

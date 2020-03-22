@@ -23,16 +23,33 @@ string Puzzle::getAnswer()
 
 void Puzzle::setQuestion(string q)
 {
-	question = q;
+	question = toUpper(q);
 }
 
 void Puzzle::setAnswer(string a)
 {
-	answer = a;
+	answer = toUpper(a);
+}
+
+void Puzzle::setPuzzle(string q, string a)
+{
+	question = toUpper(q);
+	answer = toUpper(a);
 }
 
 int Puzzle::enterLetter(char c)
 {
+	c = toUpper(c);
+	cache.append(&c);
+	return 0;	
+}
+
+int Puzzle::enterLetter()
+{
+	char c;
+	string buffer;
+	cin >> buffer;
+	c = buffer.at(0);
 	c = toUpper(c);
 	cache.append(&c);
 	return 0;	

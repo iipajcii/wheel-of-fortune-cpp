@@ -16,7 +16,10 @@ class Game
 		Game(PlayerLL p, Wheel w);
 		Game(PlayerLL p, Wheel w, Puzzle z);
 		int start();
+		int spin();
+		int round(int round);
 		Display display;
+		
 	private:
 		PlayerLL players;
 		Wheel wheel;

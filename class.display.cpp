@@ -1,6 +1,8 @@
 #include "class.display.hpp"
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <unistd.h>
 using namespace std;
 
 /*
@@ -10,6 +12,26 @@ using namespace std;
 Display::Display()
 {
 
+}
+
+void Display::clear()
+{
+#ifdef WINDOWS_OS
+	system("clr"); 
+#else 
+	system("clear");
+#endif
+}
+
+void Display::wait()
+{
+	char buffer[10];
+	fgets(buffer, sizeof(buffer), stdin);
+}
+
+void Display::text(string s)
+{
+	cout << s << endl;
 }
 
 void Display::banner(int i)
@@ -51,4 +73,40 @@ void Display::banner(int i)
 
 		break;
 	}	
+}
+
+void Display::pause(int i)
+{
+	sleep(i);
+}
+
+void Display::displayRound(int round)
+{
+	switch(round)
+	{
+		case 1:
+			cout << "██████╗  ██████╗ ██╗   ██╗███╗   ██╗██████╗      ██╗" << endl;
+			cout << "██╔══██╗██╔═══██╗██║   ██║████╗  ██║██╔══██╗    ███║" << endl;
+			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║    ╚██║" << endl;
+			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║     ██║" << endl;
+			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝     ██║" << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝      ╚═╝" << endl;
+		break;
+		case 2:
+			cout << "██████╗  ██████╗ ██╗   ██╗███╗   ██╗██████╗     ██████╗ " << endl;
+			cout << "██╔══██╗██╔═══██╗██║   ██║████╗  ██║██╔══██╗    ╚════██╗" << endl;
+			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║     █████╔╝" << endl;
+			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║    ██╔═══╝ " << endl;
+			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝    ███████╗" << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚══════╝" << endl;
+		break;
+		case 3:
+			cout << "██████╗  ██████╗ ██╗   ██╗███╗   ██╗██████╗     ██████╗ " << endl;
+			cout << "██╔══██╗██╔═══██╗██║   ██║████╗  ██║██╔══██╗    ╚════██╗" << endl;
+			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║     █████╔╝" << endl;
+			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║     ╚═══██╗" << endl;
+			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝    ██████╔╝" << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚═════╝ " << endl;
+        break;                                     
+	}
 }

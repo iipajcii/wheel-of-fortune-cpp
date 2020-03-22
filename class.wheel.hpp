@@ -14,16 +14,16 @@ class Wheel
 		int deleteCard(Type t, float v);
 		void insertMiddle(CardNode* c);
 		void insertLast(CardNode* c);
-		void circluar();//Transforms the Linked List into a Circular Linked List
+		void circular();//Transforms the Linked List into a Circular Linked List
 		void uncircular();//Transforms the Linked List into a Circular Linked List
 		int count();
+		int spin();
 		int find(Type t, float v);
 		void display();
 		
 	private:
 		CardNode* head = NULL;
 		CardNode* current;
-
 };
 
 #endif

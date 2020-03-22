@@ -12,10 +12,12 @@ class Puzzle
 		Puzzle(string ques, string ans);
 		int play();
 		int enterLetter(char c);
+		int enterLetter();
 		int enterVowel(char c); 
 		int enterConsonant(char c);
 		void setAnswer(string a);
 		void setQuestion(string q);
+		void setPuzzle(string q, string a);
 		string getQuestion();
 		string getAnswer();
 		string display();
