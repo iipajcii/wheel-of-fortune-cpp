@@ -10,11 +10,24 @@ PlayerLL::PlayerLL(PlayerNode *p)
 	head = current = p;
 }
 
+void PlayerLL::nextPlayer()
+{
+	if(current->getNextPlayer() != NULL)
+	{
+		current = current->getNextPlayer();
+	}
+}
+
+Player* PlayerLL::player()
+{
+	return current->getPlayer();
+}
+
 void PlayerLL::insertFirst(PlayerNode *p)
 {
 	if(head == NULL)
 	{
-		head = p;
+		head = current = p;
 	}
 	else
 	{
@@ -76,7 +89,7 @@ void PlayerLL::insertPlayerAtHead(string n, float v)
 	PlayerNode* p = new PlayerNode(player);
 	if(head == NULL)
 	{
-		head = p;
+		head = current = p;
 	}
 	else
 	{

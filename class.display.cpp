@@ -1,4 +1,5 @@
 #include "class.display.hpp"
+
 #include <string>
 #include <iostream>
 #include <chrono>
@@ -29,12 +30,36 @@ void Display::wait()
 	fgets(buffer, sizeof(buffer), stdin);
 }
 
-void Display::text(string s)
+void Display::player(Player* p)
 {
-	cout << s << endl;
+	cout << "PLAYER STATUS" << endl << "Name:  "<< p->getName() << endl << "Turns: " << p->getTurns() << endl << "Money: " << p->balance() << endl << endl;
 }
 
-void Display::banner(int i)
+
+void Display::pause(int i)
+{
+	sleep(i);
+}
+
+
+void Display::puzzle(Puzzle p)
+{
+	text("\nPUZZLE\n");
+	text(p.getQuestion() + "\n");
+	text(p.display() );
+	text("\n");
+}
+
+
+
+void Display::text(string s)
+{
+	cout << s;
+	// cout << s << endl;
+}
+
+
+void Display::banner(int i) //rename this to jumbotron(int) and add the rounds function to this.
 {
 
 	switch(i)
@@ -70,14 +95,33 @@ void Display::banner(int i)
 		cout << "(_/_// /_(/_(/_(/_   (_)//_   _/  (_)/ (_(__(_/_/ / /_(/_" << endl;
 		cout << "                       /)                                " << endl;
 		cout << "                      (/                                 " << endl;
+		break;
 
+		case 4:
+		cout << "                                                                                                                                " << endl;
+		cout << "                        ████████╗██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗███████╗    ███████╗ ██████╗ ██████╗                         " << endl;
+		cout << "                        ╚══██╔══╝██║  ██║██╔══██╗████╗  ██║██║ ██╔╝██╔════╝    ██╔════╝██╔═══██╗██╔══██╗                        " << endl;
+		cout << "                           ██║   ███████║███████║██╔██╗ ██║█████╔╝ ███████╗    █████╗  ██║   ██║██████╔╝                        " << endl;
+		cout << "                           ██║   ██╔══██║██╔══██║██║╚██╗██║██╔═██╗ ╚════██║    ██╔══╝  ██║   ██║██╔══██╗                        " << endl;
+		cout << "                           ██║   ██║  ██║██║  ██║██║ ╚████║██║  ██╗███████║    ██║     ╚██████╔╝██║  ██║                        " << endl;
+		cout << "                           ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚═╝      ╚═════╝ ╚═╝  ╚═╝                        " << endl;
+		cout << "                                                                                                                                " << endl;
+		cout << "                                    ██████╗ ██╗      █████╗ ██╗   ██╗██╗███╗   ██╗ ██████╗                                      " << endl;
+		cout << "                                    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██║████╗  ██║██╔════╝                                      " << endl;
+		cout << "                                    ██████╔╝██║     ███████║ ╚████╔╝ ██║██╔██╗ ██║██║  ███╗                                     " << endl;
+		cout << "                                    ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██║██║╚██╗██║██║   ██║                                     " << endl;
+		cout << "                                    ██║     ███████╗██║  ██║   ██║   ██║██║ ╚████║╚██████╔╝                                     " << endl;
+		cout << "                                    ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝                                      " << endl;
+		cout << "                                                                                                                                " << endl;
+		cout << "██╗    ██╗██╗  ██╗███████╗███████╗██╗          ██████╗ ███████╗    ███████╗ ██████╗ ██████╗ ████████╗██╗   ██╗███╗   ██╗███████╗" << endl;
+		cout << "██║    ██║██║  ██║██╔════╝██╔════╝██║         ██╔═══██╗██╔════╝    ██╔════╝██╔═══██╗██╔══██╗╚══██╔══╝██║   ██║████╗  ██║██╔════╝" << endl;
+		cout << "██║ █╗ ██║███████║█████╗  █████╗  ██║         ██║   ██║█████╗      █████╗  ██║   ██║██████╔╝   ██║   ██║   ██║██╔██╗ ██║█████╗  " << endl;
+		cout << "██║███╗██║██╔══██║██╔══╝  ██╔══╝  ██║         ██║   ██║██╔══╝      ██╔══╝  ██║   ██║██╔══██╗   ██║   ██║   ██║██║╚██╗██║██╔══╝  " << endl;
+		cout << "╚███╔███╔╝██║  ██║███████╗███████╗███████╗    ╚██████╔╝██║         ██║     ╚██████╔╝██║  ██║   ██║   ╚██████╔╝██║ ╚████║███████╗" << endl;
+		cout << " ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝     ╚═════╝ ╚═╝         ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝" << endl;
+		cout << "                                                                                                                                " << endl;
 		break;
 	}	
-}
-
-void Display::pause(int i)
-{
-	sleep(i);
 }
 
 void Display::displayRound(int round)

@@ -17,6 +17,9 @@ class Game
 		Game(PlayerLL p, Wheel w, Puzzle z);
 		int start();
 		int spin();
+		int end();
+		string options();
+		int action();
 		int round(int round);
 		Display display;
 		

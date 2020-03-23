@@ -13,6 +13,13 @@ Player::Player(string n, float m)
      name = n;
 }
 
+Player::Player(string n)
+{
+     money = 0;
+     turns = 3;
+     name = n;
+}
+
 float Player::balance()
 {
      return money;

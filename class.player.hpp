@@ -7,6 +7,7 @@ class Player{
 	public:
 		Player();
 		Player(string n, float m);
+		Player(string n);
 		float balance ();
 		void deposit (float n);
 		int getTurns();

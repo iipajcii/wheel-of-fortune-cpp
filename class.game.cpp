@@ -40,6 +40,15 @@ int Game::spin()
 	return wheel.spin();
 }
 
+int Game::end()
+{
+	display.clear();
+	display.pause(1);
+	display.banner(4);
+	display.pause(1);
+	return 0;
+}
+
 int Game::start()
 {
 	//Displaying Game Banner;
@@ -88,15 +97,31 @@ int Game::start()
 	return 0;
 }
 
+int Game::action()
+{
+	return 0;
+}
+
+string Game::options()
+{
+	Player* p = new Player();
+	string str = "";
+	return "";
+}
+
 int Game::round(int round)
 {
 	display.clear();
 	display.displayRound(round);
 	display.pause(3);
-	display.clear();
-	display.text(puzzle.getQuestion());
-	display.text(puzzle.display());
-	
+	// display.clear();
+	// Player* p = new Player("Beta Tester");
+	display.player(players.player());
+
+	display.text(options());
+	action();
+
+	display.puzzle(puzzle);
 	puzzle.enterLetter();
 	return 0;
 }

@@ -15,6 +15,8 @@ class PlayerLL
 		int deletePlayer(string n);
 		void insertMiddle(PlayerNode* p);
 		void insertLast(PlayerNode* p);
+		Player* player();
+		void nextPlayer();
 		void circular();//Transforms the Linked List into a Circular Linked List
 		void uncircular();//Transforms the Linked List into a Circular Linked List
 		int count();

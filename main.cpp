@@ -8,5 +8,6 @@ int main()
 	{
 		game.round(round);
 	}
-	return 0;
+	
+	return game.end();
 }
