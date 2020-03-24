@@ -21,6 +21,8 @@ class Game
 		int options(Player* p);
 		int action(int i);
 		void buyVowel();
+		void pickConsonant();
+		void solvePuzzle();
 		int round(int round);
 		Display display;
 		

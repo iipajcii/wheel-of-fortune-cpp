@@ -26,8 +26,17 @@ void Display::clear()
 
 void Display::wait()
 {
-	char buffer[10];
+	char buffer[30];
 	fgets(buffer, sizeof(buffer), stdin);
+}
+
+void Display::card(Card* c)
+{
+	text("WHEEL DETAILS");
+	cout << "Card Type:   " << c->getType() << endl;
+	cout << "Card Value:  " << c->getValue() << endl;
+	text("Wheel Count: ");
+	
 }
 
 void Display::player(Player* p)
@@ -39,6 +48,29 @@ void Display::player(Player* p)
 void Display::pause(int i)
 {
 	sleep(i);
+}
+
+void Display::millipause(int milliseconds)
+{
+    clock_t time_end;
+    time_end = clock() + milliseconds * CLOCKS_PER_SEC/1000;
+    while (clock() < time_end)
+    {
+    }
+}
+
+void Display::spinning()
+{
+	string spinner[] = {"..Spinning..","...Spinning.", ".....Spinning","....Spinning.","...Spinning..","..Spinning...",".Spinning....","Spinning.....",".Spinning....","..Spinning....","...Spinning..."};
+	for(int counter1 = 0 ,count1 = 1; counter1 < count1 ;counter1++)
+	{
+		for(int counter2 = 0 ,count2 = 11 ; counter2 < count2; counter2++)
+		{
+			cout << spinner[counter2] << endl;
+			millipause(90);
+		}
+		cout << endl;
+	}
 }
 
 
@@ -144,7 +176,7 @@ void Display::displayRound(int round)
 			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║    ╚██║" << endl;
 			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║     ██║" << endl;
 			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝     ██║" << endl;
-			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝      ╚═╝" << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝      ╚═╝" << endl << endl;
 		break;
 		case 2:
 			cout << "██████╗  ██████╗ ██╗   ██╗███╗   ██╗██████╗     ██████╗ " << endl;
@@ -152,7 +184,7 @@ void Display::displayRound(int round)
 			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║     █████╔╝" << endl;
 			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║    ██╔═══╝ " << endl;
 			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝    ███████╗" << endl;
-			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚══════╝" << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚══════╝" << endl << endl;
 		break;
 		case 3:
 			cout << "██████╗  ██████╗ ██╗   ██╗███╗   ██╗██████╗     ██████╗ " << endl;
@@ -160,7 +192,7 @@ void Display::displayRound(int round)
 			cout << "██████╔╝██║   ██║██║   ██║██╔██╗ ██║██║  ██║     █████╔╝" << endl;
 			cout << "██╔══██╗██║   ██║██║   ██║██║╚██╗██║██║  ██║     ╚═══██╗" << endl;
 			cout << "██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝    ██████╔╝" << endl;
-			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚═════╝ " << endl;
+			cout << "╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚═════╝ " << endl << endl;
         break;                                     
 	}
 }

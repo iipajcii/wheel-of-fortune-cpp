@@ -97,6 +97,19 @@ bool Puzzle::isConsonant(char c)
 	return !isVowel(c);
 }
 
+float Puzzle::letterCount(char c)
+{
+	float letterCount = 0;
+	for(int counter = 0, count = answer.length(); counter < count; counter++)
+	{
+		if(toUpper(c) == answer.at(counter))
+		{
+			letterCount++;
+		}
+	}
+	return letterCount;
+}
+
 /*
 	Note: Function used in enterVowel() and enterConsonant()
 */

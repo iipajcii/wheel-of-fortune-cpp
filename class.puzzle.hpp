@@ -13,6 +13,7 @@ class Puzzle
 		int play();
 		int enterLetter(char c);
 		int enterLetter();
+		float letterCount(char letter);
 		int enterVowel(char c); 
 		int enterConsonant(char c);
 		void setAnswer(string a);
@@ -25,13 +26,11 @@ class Puzzle
 		// int lettersFound();
 		bool inCache(char c);
 		bool isVowel(char c);
-	private:
-
-		
 		bool isConsonant(char c);
+
 		char   toUpper(char c);
 		string toUpper(string s);
-		
+	private:
 		
 		string question;
 		string answer;

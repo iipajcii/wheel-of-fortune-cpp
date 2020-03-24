@@ -2,6 +2,7 @@
 #define DISPLAY_HPP
 #include "class.player.hpp"
 #include "class.puzzle.hpp"
+#include "class.card.hpp"
 #include <string>
 using namespace std;
 
@@ -16,7 +17,10 @@ class Display
 		void wait();
 		void pause(int i);
 		void text(string s);
+		void spinning();
+		void millipause(int milliseconds);
 		void displayRound(int round);
+		void card(Card* c);
 	private:
 };
 

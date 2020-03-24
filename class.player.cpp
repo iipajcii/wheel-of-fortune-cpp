@@ -25,6 +25,11 @@ float Player::balance()
      return money;
 }
 
+void Player::setMoney(float n)
+{
+     money = n;
+}
+
 void Player::deposit (float m)
 {
      money += m;

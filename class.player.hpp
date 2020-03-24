@@ -13,6 +13,7 @@ class Player{
 		int getTurns();
 		string getName();
 		void setName(string n);
+		void setMoney(float m);
 		void decrementTurns();
 
 	private:

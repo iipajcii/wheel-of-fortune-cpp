@@ -40,6 +40,32 @@ int Game::spin()
 	return wheel.spin();
 }
 
+void Game::solvePuzzle()
+{
+	string answer = puzzle.getAnswer();
+	char buffer[100];
+	display.text("YOU HAVE 30 SECONDS TO SOLVE THE PUZZLE!");
+	display.text(puzzle.display() + "\n");
+	display.pause(30);
+	cin >> buffer;
+	string attempt = buffer;
+	if(puzzle.toUpper(attempt) == answer)
+	{
+		display.text("Correct");
+	}
+	else
+	{
+		display.text("Incorrect");
+		display.text(puzzle.toUpper(attempt));
+		display.text(answer);
+	}
+	display.pause(60);
+	display.text(attempt);
+	display.text(answer);
+	
+	// if()
+}
+
 int Game::end()
 {
 	display.clear();
@@ -53,7 +79,7 @@ int Game::start()
 {
 	//Displaying Game Banner;
 	display.banner(1);
-	display.pause(1);
+	display.millipause(2);
 	display.banner(6);
 	display.wait();
 	
@@ -97,36 +123,115 @@ int Game::start()
 	return 0;
 }
 
-int Game::action(int choice)
+void Game::pickConsonant()
 {
-	if(choice < 1 || choice > 4)
+	string a;
+	cin >> a;
+	if(puzzle.isConsonant(a.at(0)))
 	{
-		int i;
-		display.text("Invalid Choice, Please enter again");
-		cin >> i;
-		action(i);
+		if(!puzzle.inCache(a.at(0)))
+		{
+			puzzle.enterLetter(a.at(0));
+			players.player()->deposit(wheel.card()->getValue() * puzzle.letterCount(a.at(0)));
+		}
+		else {
+			display.text("Letter Has already been entered; Enter another vowel");
+			pickConsonant();
+		}
+		
 	}
 	else
 	{
+		display.text("Letter is not a Consonant. Enter a Consonant");
+		pickConsonant();
+	}
+}
+
+/*
+	This function is reliant on int Game::options(Player*) for input to decide what actions a player can and cannot do
+*/
+int Game::action(int choice)
+{
+	cout << "Choice: " << choice << endl;
+	bool loop = true;
+	while(loop)
+	{
+		loop = false;
 		switch(choice)
 		{
-			case 1:
-				buyVowel();
+			case 1:	// 1. Buy Vowel
+				if(players.player()->balance() >= 250)
+				{
+					buyVowel();
+				}
+				else
+				{
+					display.text("Unavailable Option, please enter again");
+					display.text("1");
+					cin >> choice;
+					loop = true;
+				}
 			break;
-			
-			case 2:
+
+			case 2: // 2. Pick Consonant
+				if (wheel.getSpun())
+				{
+					pickConsonant();
+				}
+				else
+				{
+					display.text("Unavailable Option, please enter again");
+					display.text("2");
+					cin >> choice;
+					loop = true;
+				}
 			break;
-			
-			case 3:
+
+			case 3: // 3. Solve
+				if(!(puzzle.getCache()==""))
+				{
+					solvePuzzle();
+				}
+				else
+				{
+					display.text("Unavailable Option, please enter again");
+					display.text("3");
+					cin >> choice;
+					loop = true;
+				}
 			break;
-			
-			case 4:
-				wheel.spin();
+
+			case 4: // 4. Spin Wheel
+				if(true)
+				{
+					wheel.spin();
+					display.spinning();
+					display.card(wheel.card());
+					display.text("Hit Enter to continue");
+					// display.pause(3);
+					display.wait();
+					// game.decide();
+					
+				}
+				else
+				{
+					display.text("Unavailable Option, please enter again");
+					display.text("4");
+					cin >> choice;
+					loop = true;
+				}
+			break;
+			default:
+				display.text("Unavailable Option, please enter again");
+				display.text("default");
+				cin >> choice;
+				loop = true;
 			break;
 		}
-	}
+	}	
 	return 0;
 }
+
 
 void Game::buyVowel()
 {
@@ -137,6 +242,7 @@ void Game::buyVowel()
 		if(!puzzle.inCache(a.at(0)))
 		{
 			puzzle.enterLetter(a.at(0));
+			players.player()->setMoney(players.player()->balance() - 250);
 		}
 		else {
 			display.text("Letter Has already been entered; Enter another vowel");
@@ -154,13 +260,13 @@ void Game::buyVowel()
 
 int Game::options(Player* p)
 {
-	int choice = -1;
+	int choice;
 	display.text("OPTIONS:  [✓ = Available, x = Not Available]");
 
-	(p->balance() >= 250)      ? (display.text("✓ 1. Buy Vowel  [$250]"), choice = 1): (display.text("x 1. Buy Vowel  [$250]"), choice = -1 );
-	(wheel.getSpun())          ? (display.text("✓ 2. Pick Consonant"), choice = 2 ): (display.text("x 2. Pick Consonant"), choice = -1);
-	(!(puzzle.getCache()=="")) ? (display.text("✓ 3. Solve"), choice = 3) : (display.text("x 3. Solve"), choice = -1);
-	(1)/*You can always spin*/ ? (display.text("✓ 4. Spin Wheel\n"), choice = 4) : (display.text("x 4. Spin Wheel\n"), choice = -1);
+	(p->balance() >= 250)      ? (display.text("✓ 1. Buy Vowel  [$250]")):(display.text("x 1. Buy Vowel  [$250]"));
+	(wheel.getSpun())          ? (display.text("✓ 2. Pick Consonant")): (display.text("x 2. Pick Consonant"));
+	(!(puzzle.getCache()=="")) ? (display.text("✓ 3. Solve")) : (display.text("x 3. Solve"));
+	(1)/*You can always spin*/ ? (display.text("✓ 4. Spin Wheel\n")) : (display.text("x 4. Spin Wheel\n"));
 
 	display.text("ENTER AN OPTION: ");
 	cin >> choice;
@@ -175,7 +281,7 @@ int Game::round(int round)
 	display.pause(3);
 	// display.clear();
 	display.player(players.player());
-
+	display.card(wheel.card());
 	display.puzzle(puzzle);
 	action(options(players.player()));
 	// puzzle.enterLetter();
