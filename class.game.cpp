@@ -54,7 +54,7 @@ int Game::start()
 	//Displaying Game Banner;
 	display.banner(1);
 	display.pause(1);
-	display.text("\n           Hit 'Enter' to Play\n");
+	display.banner(6);
 	display.wait();
 	
 	//Inserting Cards into Wheel
@@ -97,17 +97,76 @@ int Game::start()
 	return 0;
 }
 
-int Game::action()
+int Game::action(int choice)
 {
+	if(choice < 1 || choice > 4)
+	{
+		int i;
+		display.text("Invalid Choice, Please enter again");
+		cin >> i;
+		action(i);
+	}
+	else
+	{
+		switch(choice)
+		{
+			case 1:
+				buyVowel();
+			break;
+			
+			case 2:
+			break;
+			
+			case 3:
+			break;
+			
+			case 4:
+				wheel.spin();
+			break;
+		}
+	}
 	return 0;
 }
 
-string Game::options()
+void Game::buyVowel()
 {
-	Player* p = new Player();
-	string str = "";
-	return "";
+	string a;
+	cin >> a;
+	if(puzzle.isVowel(a.at(0)))
+	{
+		if(!puzzle.inCache(a.at(0)))
+		{
+			puzzle.enterLetter(a.at(0));
+		}
+		else {
+			display.text("Letter Has already been entered; Enter another vowel");
+			buyVowel();
+		}
+		
+	}
+	else
+	{
+		display.text("Letter is not a Vowel. Enter a vowel");
+		buyVowel();
+	}
+	
 }
+
+int Game::options(Player* p)
+{
+	int choice = -1;
+	display.text("OPTIONS:  [✓ = Available, x = Not Available]");
+
+	(p->balance() >= 250)      ? (display.text("✓ 1. Buy Vowel  [$250]"), choice = 1): (display.text("x 1. Buy Vowel  [$250]"), choice = -1 );
+	(wheel.getSpun())          ? (display.text("✓ 2. Pick Consonant"), choice = 2 ): (display.text("x 2. Pick Consonant"), choice = -1);
+	(!(puzzle.getCache()=="")) ? (display.text("✓ 3. Solve"), choice = 3) : (display.text("x 3. Solve"), choice = -1);
+	(1)/*You can always spin*/ ? (display.text("✓ 4. Spin Wheel\n"), choice = 4) : (display.text("x 4. Spin Wheel\n"), choice = -1);
+
+	display.text("ENTER AN OPTION: ");
+	cin >> choice;
+	return choice;
+}
+
 
 int Game::round(int round)
 {
@@ -115,14 +174,11 @@ int Game::round(int round)
 	display.displayRound(round);
 	display.pause(3);
 	// display.clear();
-	// Player* p = new Player("Beta Tester");
 	display.player(players.player());
 
-	display.text(options());
-	action();
-
 	display.puzzle(puzzle);
-	puzzle.enterLetter();
+	action(options(players.player()));
+	// puzzle.enterLetter();
 	return 0;
 }
 

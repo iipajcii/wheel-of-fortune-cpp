@@ -18,8 +18,9 @@ class Game
 		int start();
 		int spin();
 		int end();
-		string options();
-		int action();
+		int options(Player* p);
+		int action(int i);
+		void buyVowel();
 		int round(int round);
 		Display display;
 		

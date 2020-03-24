@@ -60,7 +60,7 @@ void PlayerLL::insertMiddle(PlayerNode* p)
 {
 	if(head == NULL)
 	{
-		head = p;
+		head = current = p;
 	}
 	else
 	{
@@ -152,7 +152,7 @@ void PlayerLL::insertLast(PlayerNode* p)
 {
 	if(head == NULL)
 	{
-		head = p;
+		head = current = p;
 	}
 	else
 	{

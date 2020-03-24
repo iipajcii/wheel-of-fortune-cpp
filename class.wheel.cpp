@@ -8,6 +8,7 @@ using namespace std;
 Wheel::Wheel()
 {
 	current = head = NULL;
+	spun = false;
 };
 
 
@@ -15,12 +16,56 @@ Wheel::Wheel(CardNode* c)
 {
 	current = head = c;
 	head->setNextCard(NULL);
+	spun = false;
 }
+
+
+Card* Wheel::card()
+{
+	return current->getCard();
+}
+
+
+CardNode* Wheel::getCurrent()
+{
+	return current;
+}
+
+
+void Wheel::setCurrent(CardNode* n)
+{
+	current = n;
+}
+
+
+void Wheel::setSpun(bool b)
+{
+	spun = b;
+}
+
+
+bool Wheel::getSpun()
+{
+	return spun;
+}
+
+
+bool Wheel::toggleSpun()
+{
+	spun ? spun = false : spun = true;
+}
+
+
 
 int Wheel::spin()
 {
 	srand(time(0));
 	int count = 50 + (rand() % 51);
+	for(int i = 0; i < count ; i++)
+	{
+		setCurrent((getCurrent()->getNextCard()));
+	}
+	spun = true;
 	return count;
 }
 
@@ -29,7 +74,7 @@ void Wheel::insertFirst(CardNode* c)
 {
 	if(head == NULL)
 	{
-		head = c;
+		head = current = c;
 	}
 	else
 	{
@@ -37,6 +82,7 @@ void Wheel::insertFirst(CardNode* c)
 		head = c;
 	}
 }
+
 
 void Wheel::insertCardAtHead(Type t, float v)
 {
@@ -44,7 +90,7 @@ void Wheel::insertCardAtHead(Type t, float v)
 	CardNode* c = new CardNode(card);
 	if(head == NULL)
 	{
-		head = c;
+		head = current = c;
 	}
 	else
 	{
@@ -53,13 +99,14 @@ void Wheel::insertCardAtHead(Type t, float v)
 	}
 }
 
+
 void Wheel::insertCardAtHead(Type t)
 {
 	Card* card = new Card(t, 0);
 	CardNode* c = new CardNode(card);
 	if(head == NULL)
 	{
-		head = c;
+		head = current = c;
 	}
 	else
 	{
@@ -73,7 +120,7 @@ void Wheel::insertMiddle(CardNode* n)
 {
 	if(head == NULL)
 	{
-		head = n;
+		head = current = n;
 	}
 	else
 	{
@@ -90,11 +137,12 @@ void Wheel::insertMiddle(CardNode* n)
 	}
 }
 
+
 void Wheel::insertLast(CardNode* n)
 {
 	if(head == NULL)
 	{
-		head = n;
+		head = current = n;
 	}
 	else
 	{
@@ -107,6 +155,7 @@ void Wheel::insertLast(CardNode* n)
 	}
 };
 
+
 int Wheel::count()
 {
 	CardNode *tmp = head;
@@ -118,6 +167,7 @@ int Wheel::count()
 	}
 	return count;
 }
+
 
 int Wheel::find(Type t, float v)
 {
@@ -147,6 +197,7 @@ void Wheel::display()
 	}
 }
 
+
 void Wheel::circular()
 {
 	CardNode *tmp = head;
@@ -157,6 +208,7 @@ void Wheel::circular()
 	tmp->setNextCard(head);
 };
 
+
 void Wheel::uncircular()
 {
 	CardNode *tmp = head;
@@ -166,6 +218,7 @@ void Wheel::uncircular()
 	}
 	tmp->setNextCard(NULL);
 };
+
 
 int Wheel::deleteCard(Type t, float v)
 {
@@ -207,10 +260,7 @@ int Wheel::deleteCard(Type t, float v)
 		CardNode* cN1 = new CardNode(c1);
 		
 		Card* c2 = new Card(MONEY,500);
-		CardNode* cN2 = new CardNode(c2);
-
-		
-		
+		CardNode* cN2 = new CardNode(c2);		
 
 		Wheel wheel;
 		wheel.insertFirst(cN1);

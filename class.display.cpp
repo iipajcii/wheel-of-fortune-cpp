@@ -44,18 +44,16 @@ void Display::pause(int i)
 
 void Display::puzzle(Puzzle p)
 {
-	text("\nPUZZLE\n");
-	text(p.getQuestion() + "\n");
-	text(p.display() );
-	text("\n");
+	text("\nPUZZLE");
+	text("Category: " + p.getQuestion());
+	text("Answer:   " + p.display() + "\n\n");
 }
 
 
 
 void Display::text(string s)
 {
-	cout << s;
-	// cout << s << endl;
+	cout << s << endl;
 }
 
 
@@ -120,6 +118,18 @@ void Display::banner(int i) //rename this to jumbotron(int) and add the rounds f
 		cout << "╚███╔███╔╝██║  ██║███████╗███████╗███████╗    ╚██████╔╝██║         ██║     ╚██████╔╝██║  ██║   ██║   ╚██████╔╝██║ ╚████║███████╗" << endl;
 		cout << " ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝     ╚═════╝ ╚═╝         ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝" << endl;
 		cout << "                                                                                                                                " << endl;
+		break;
+
+		case 5:
+		cout << "  _  _  _  _  _    _    ___  _   ___    _     _    " << endl;
+		cout << " /_//_//_`/_`/_`  /_`/|///_`/_/  // /  /_//  /_//_/" << endl;
+		cout << "/  / \\/_,._/._/  /_,/ |//_,/ \\  //_/  /  /_,/ / /  " << endl;
+		break;
+
+		case 6:
+		cout << " _   _   _  __  __    _     ___ _  _    ___ _     _            " << endl;
+ 		cout << "|_) |_) |_ (_  (_    |_ |\\ | | |_ |_)    | / \\   |_) |   /\\ \\_/ " << endl;
+ 		cout << "|   | \\ |_ __) __)   |_ | \\| | |_ | \\    | \\_/   |   |_ /--\\ |  " << endl;
 		break;
 	}	
 }

@@ -21,14 +21,17 @@ class Puzzle
 		string getQuestion();
 		string getAnswer();
 		string display();
+		string getCache();
 		// int lettersFound();
-
-	private:
+		bool inCache(char c);
 		bool isVowel(char c);
+	private:
+
+		
 		bool isConsonant(char c);
 		char   toUpper(char c);
 		string toUpper(string s);
-		string getCache();
+		
 		
 		string question;
 		string answer;

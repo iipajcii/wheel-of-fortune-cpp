@@ -126,6 +126,18 @@ char Puzzle::toUpper(char c)
 }
 
 
+bool Puzzle::inCache(char c)
+{
+	c = toUpper(c);
+	for(int counter = 0, count = cache.length(); counter < count; counter++)
+	{
+		if(c == cache.at(counter))
+		{return true;}
+	}
+	return false;
+}
+
+
 string Puzzle::display()
 {
 	string str = "";
@@ -136,38 +148,42 @@ string Puzzle::display()
 		{
 			if(answer.at(i) == ' '){str += "  ";}
 			else {str += "_ ";}
-			if(i == complete - 1){cout << endl;}
+			if(i == complete - 1){/*cout << endl;*/}
 		}
 		return str;
 	}
-	int complete = answer.length(), spaceCount = 0;
-	for(int j = answer.length(), i = 0; i < j ; i++)
-    {
-		bool dash, space;
-		spaceCount = 0;
-		for(int k = cache.length(), l = 0; l < k ; l++)
-		{	
-			dash = true;
-			if(cache.at(l) == answer.at(i))
-			{
-				cout << answer.at(i);
-				dash = false;
-				break;
+	else
+	{
+		int complete = answer.length(), spaceCount = 0;
+		for(int j = answer.length(), i = 0; i < j ; i++)
+	    {
+			bool dash, space;
+			spaceCount = 0;
+			for(int k = cache.length(), l = 0; l < k ; l++)
+			{	
+				dash = true;
+				if(cache.at(l) == answer.at(i))
+				{
+					str += answer.at(i);
+					dash = false;
+					break;
+				}
+				else if(answer.at(i) == ' ')
+				{
+					//Above block of code does not handle spaces, this block 
+					str += "  ";
+					dash = false;
+					space = true;
+					break;
+				}
 			}
-			else if(answer.at(i) == ' ')
-			{
-				//Above block of code does not handle spaces, this block 
-				cout << "  ";
-				dash = false;
-				space = true;
-				break;
-			}
+			if(dash == true){complete--; str += "_ ";}
+			if(space == true){spaceCount++;}
+			if( i == j - 1){/*cout << endl;*/}
 		}
-		if(dash == true){complete--; cout << "_ ";}
-		if(space == true){spaceCount++;}
-		if( i == j - 1){cout << endl;}
+		return str;
 	}
-	return str;
+	
 }
 
 string Puzzle::getCache()
@@ -290,7 +306,7 @@ int Puzzle::play()
 		cout << p2.display() << endl;
 		cout << p2.display() << endl;
 		cout << p2.display() << endl;
-		
+		// p2.inCache('7');
 		// p2.play();
 		// p4->play();
 
