@@ -66,7 +66,7 @@ void Display::spinning()
 	{
 		for(int counter2 = 0 ,count2 = 11 ; counter2 < count2; counter2++)
 		{
-			cout << spinner[counter2] << endl;
+			cout << spinner[counter2] << flush;
 			millipause(90);
 		}
 		cout << endl;
