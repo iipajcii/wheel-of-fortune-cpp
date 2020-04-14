@@ -61,12 +61,12 @@ void Display::millipause(int milliseconds)
 
 void Display::spinning()
 {
-	string spinner[] = {"..Spinning..","...Spinning.", ".....Spinning","....Spinning.","...Spinning..","..Spinning...",".Spinning....","Spinning.....",".Spinning....","..Spinning....","...Spinning..."};
+	string spinner[] = {"..Spinning..","...Spinning.", "....Spinning","...Spinning.","..Spinning..",".Spinning...",".Spinning...","Spinning....",".Spinning...","..Spinning..","..Spinning.."};
 	for(int counter1 = 0 ,count1 = 1; counter1 < count1 ;counter1++)
 	{
 		for(int counter2 = 0 ,count2 = 11 ; counter2 < count2; counter2++)
 		{
-			cout << spinner[counter2] << flush;
+			cout << spinner[counter2] << '\r' << flush;
 			millipause(90);
 		}
 		cout << endl;
