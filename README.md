@@ -1,8 +1,8 @@
 # WHEEL OF FORTUNE
-##Description
+## Description
 A C++ implementation of Wheel of Fortune using four players
 
-##Important Information
+## Important Information
 * The program is composed of three main classes:
   * Game
   * Players
